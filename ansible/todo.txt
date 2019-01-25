@@ -1,0 +1,2 @@
+- Write setup script when doing testing to be able to reproduce easier.
+- As in write playbooks :)  
