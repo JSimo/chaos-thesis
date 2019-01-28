@@ -79,11 +79,11 @@ if [[ -z "$_MINMIN" ]]; then
     # same a min but with less rounds per type so lesser accuracy.
     runBenchmark xmemcac/xmemcached-minmin.jar "$_xmem_file" 18
     runBenchmark spymemc/spymemcached-minmin.jar "$_spym_file" 18
-    runBenchmark javamem/javamemcached-minmin.jar "$_javam_file" 20 #todo edit value
+    runBenchmark javamem/javamemcached-minmin.jar "$_javam_file" 18
 elif  [[ -z "$_MIN" ]]; then
     runBenchmark xmemcac/xmemcached-min.jar "$_xmem_file" 18
     runBenchmark spymemc/spymemcached-min.jar "$_spym_file" 18
-    runBenchmark javamem/javamemcached-min.jar "$_javam_file" 20 #todo edit value
+    runBenchmark javamem/javamemcached-min.jar "$_javam_file" 18
 else
     #run full tests (takes a *long* time)
     runBenchmark xmemcac/xmemcached.jar "$_xmem_file" 25
