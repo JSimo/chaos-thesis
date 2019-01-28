@@ -73,9 +73,9 @@ function runBenchmark() {
 
 # jar, output, number of lines in output max.
 if [[ -z "$MIN" ]]; then
-    runBenchmark xmemcac/xmemcached-min.jar "$_xmem_file" 25
-    runBenchmark spymemc/spymemcached-min.jar "$_spym_file" 25
-    runBenchmark javamem/javamemcached-min.jar "$_javam_file" 20
+    runBenchmark xmemcac/xmemcached-min.jar "$_xmem_file" 25 #todo edit value
+    runBenchmark spymemc/spymemcached-min.jar "$_spym_file" 25 #todo edit value
+    runBenchmark javamem/javamemcached-min.jar "$_javam_file" 20 #todo edit value
 else
     #run full tests (takes a *long* time)
     runBenchmark xmemcac/xmemcached.jar "$_xmem_file" 25
