@@ -38,12 +38,13 @@ function runBenchmark() {
     _jar="$1"
     _output_file="$2"
     DONE_NR_OF_LINES="$3"
-    startMemcache # start/restart the memcacheinstances
+    startMemcache &> /dev/null # start/restart the memcacheinstances
     sleep 30s # wait for memcache to start
 
     # start the benchmark jar in the background
     java -jar "$_jar" &> "$_output_file" &
     _pid=$!
+    trap 'kill -9 $_pid' EXIT
     _lines=0
     while [  $_lines -lt $DONE_NR_OF_LINES ]; do
         _lines=`cat $_output_file | grep "threads" | wc -l`
