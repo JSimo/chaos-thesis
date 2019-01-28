@@ -1,17 +1,20 @@
 #/usr/bin/env bash
+_MINMIN=""
+_MIN=""
+
 while getopts ":m" opt; do
   case $opt in
-    a)
-      MIN=true
+     n)
+      _MINMIN="TRUE"
+      ;;
+     m)
+      _MIN="TRUE"
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
       ;;
   esac
 done
-
-
-
 
 # ------ Cleanup -------
 # Cleanup any old instances of memcached.
@@ -63,18 +66,23 @@ function runBenchmark() {
     while [  $_lines -lt $DONE_NR_OF_LINES ]; do
         _lines=`cat $_output_file | grep "threads" | wc -l`
         _progress=$(($_lines * 100 / $DONE_NR_OF_LINES))
-       #echo "progress $_progress lines $_lines done $DONE_NR_OF_LINES"
        progressbar "$_progress"
        ps -p $_pid > /dev/null || break #exit loop if process is done.
        sleep 1
     done
     wait $_pid # wait for benchmark process to finish.
+    progressbar 100 #finished, so for prettyness set progress bar to 100
 }
 
 # jar, output, number of lines in output max.
-if [[ -z "$MIN" ]]; then
-    runBenchmark xmemcac/xmemcached-min.jar "$_xmem_file" 25 #todo edit value
-    runBenchmark spymemc/spymemcached-min.jar "$_spym_file" 25 #todo edit value
+if [[ -z "$_MINMIN" ]]; then
+    # same a min but with less rounds per type so lesser accuracy.
+    runBenchmark xmemcac/xmemcached-minmin.jar "$_xmem_file" 18
+    runBenchmark spymemc/spymemcached-minmin.jar "$_spym_file" 18
+    runBenchmark javamem/javamemcached-minmin.jar "$_javam_file" 20 #todo edit value
+elif  [[ -z "$_MIN" ]]; then
+    runBenchmark xmemcac/xmemcached-min.jar "$_xmem_file" 18
+    runBenchmark spymemc/spymemcached-min.jar "$_spym_file" 18
     runBenchmark javamem/javamemcached-min.jar "$_javam_file" 20 #todo edit value
 else
     #run full tests (takes a *long* time)
@@ -82,5 +90,8 @@ else
     runBenchmark spymemc/spymemcached.jar "$_spym_file" 25
     runBenchmark javamem/javamemcached.jar "$_javam_file" 20
 fi
+
+echo "Finished benchmarking"
+
 
 
