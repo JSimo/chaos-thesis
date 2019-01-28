@@ -1,4 +1,18 @@
 #/usr/bin/env bash
+while getopts ":m" opt; do
+  case $opt in
+    a)
+      MIN=true
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      ;;
+  esac
+done
+
+
+
+
 # ------ Cleanup -------
 # Cleanup any old instances of memcached.
 function startMemcache() {
@@ -51,15 +65,22 @@ function runBenchmark() {
         _progress=$(($_lines * 100 / $DONE_NR_OF_LINES))
        #echo "progress $_progress lines $_lines done $DONE_NR_OF_LINES"
        progressbar "$_progress"
+       ps -p $_pid > /dev/null || break #exit loop if process is done.
        sleep 1
     done
     wait $_pid # wait for benchmark process to finish.
 }
 
 # jar, output, number of lines in output max.
-runBenchmark xmemcac/xmemcached.jar "$_xmem_file" 25
-runBenchmark spymemc/spymemcached.jar "$_spym_file" 25
-runBenchmark javamem/javamemcached.jar "$_javam_file" 20
-
+if [[ -z "$MIN" ]]; then
+    runBenchmark xmemcac/xmemcached-min.jar "$_xmem_file" 25
+    runBenchmark spymemc/spymemcached-min.jar "$_spym_file" 25
+    runBenchmark javamem/javamemcached-min.jar "$_javam_file" 20
+else
+    #run full tests (takes a *long* time)
+    runBenchmark xmemcac/xmemcached.jar "$_xmem_file" 25
+    runBenchmark spymemc/spymemcached.jar "$_spym_file" 25
+    runBenchmark javamem/javamemcached.jar "$_javam_file" 20
+fi
 
 
