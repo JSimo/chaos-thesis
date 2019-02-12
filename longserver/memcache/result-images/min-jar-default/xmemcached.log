@@ -1,0 +1,18 @@
+Xmemcached startup
+warm up
+threads=1,repeats=40000,valueLength=64,tps=3923,miss=0,fail=0,hit=32004,all=40000,hitRate=1.00
+threads=1,repeats=40000,valueLength=512,tps=2954,miss=0,fail=0,hit=32004,all=40000,hitRate=1.00
+threads=1,repeats=40000,valueLength=1024,tps=3067,miss=0,fail=0,hit=32004,all=40000,hitRate=1.00
+threads=1,repeats=40000,valueLength=4096,tps=2262,miss=0,fail=0,hit=32004,all=40000,hitRate=1.00
+threads=10,repeats=40000,valueLength=64,tps=22021,miss=0,fail=0,hit=320040,all=400000,hitRate=1.00
+threads=10,repeats=40000,valueLength=512,tps=21007,miss=0,fail=0,hit=320040,all=400000,hitRate=1.00
+threads=10,repeats=40000,valueLength=1024,tps=18656,miss=72240,fail=0,hit=247800,all=400000,hitRate=0.77
+threads=10,repeats=40000,valueLength=4096,tps=15424,miss=277720,fail=0,hit=42320,all=400000,hitRate=0.13
+threads=50,repeats=40000,valueLength=64,tps=45197,miss=0,fail=0,hit=1600200,all=2000000,hitRate=1.00
+threads=50,repeats=40000,valueLength=512,tps=41410,miss=817544,fail=0,hit=782656,all=2000000,hitRate=0.49
+threads=50,repeats=40000,valueLength=1024,tps=39551,miss=1203720,fail=0,hit=396480,all=2000000,hitRate=0.25
+threads=50,repeats=40000,valueLength=4096,tps=27413,miss=1497160,fail=0,hit=103040,all=2000000,hitRate=0.06
+threads=100,repeats=40000,valueLength=64,tps=52597,miss=110088,fail=0,hit=3090312,all=4000000,hitRate=0.97
+threads=100,repeats=40000,valueLength=512,tps=51476,miss=2417744,fail=0,hit=782656,all=4000000,hitRate=0.24
+threads=100,repeats=40000,valueLength=1024,tps=50505,miss=2803920,fail=0,hit=396480,all=4000000,hitRate=0.12
+threads=100,repeats=40000,valueLength=4096,tps=32184,miss=3097360,fail=0,hit=103040,all=4000000,hitRate=0.03
