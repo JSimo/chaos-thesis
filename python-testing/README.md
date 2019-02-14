@@ -5,7 +5,7 @@ Essentially you create another container (having iproute2 installed) and give it
 and the same network stack as the container under test.
 
 
-1. `docker run --network=container:8675cea3d39b --cap-add="NET_ADMIN" -it js-iproute2`
+1. `docker run --network=container:3460fd797b2d --cap-add="NET_ADMIN" -it se.jsimo.alpine.iproute2`
 2. `tc qdisc add dev eth0 root netem delay 1000ms`
 
 ## Cleanup
@@ -15,3 +15,7 @@ and the same network stack as the container under test.
 ## Future plan
 Add ability to add a delay to a specific container. 
 Add ability to add execute something at same time?
+
+## Knowledge
+Running a tc command and then quitting the container causes the tc command to still exist.
+
