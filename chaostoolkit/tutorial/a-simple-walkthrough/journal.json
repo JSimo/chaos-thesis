@@ -1,0 +1,372 @@
+{
+  "chaoslib-version": "0.22.2",
+  "platform": "Linux-4.15.0-45-generic-x86_64-with-Ubuntu-18.04-bionic",
+  "node": "wall-e",
+  "experiment": {
+    "version": "1.0.0",
+    "title": "What is the impact of an expired certificate on our application chain?",
+    "description": "If a certificate expires, we should gracefully deal with the issue.",
+    "tags": [
+      "tls"
+    ],
+    "steady-state-hypothesis": {
+      "title": "Application responds",
+      "probes": [
+        {
+          "type": "probe",
+          "name": "the-astre-service-must-be-running",
+          "tolerance": true,
+          "provider": {
+            "type": "python",
+            "module": "os.path",
+            "func": "exists",
+            "arguments": {
+              "path": "astre.pid"
+            }
+          }
+        },
+        {
+          "type": "probe",
+          "name": "the-sunset-service-must-be-running",
+          "tolerance": true,
+          "provider": {
+            "type": "python",
+            "module": "os.path",
+            "func": "exists",
+            "arguments": {
+              "path": "sunset.pid"
+            }
+          }
+        },
+        {
+          "type": "probe",
+          "name": "we-can-request-sunset",
+          "tolerance": 200,
+          "provider": {
+            "type": "http",
+            "timeout": 3,
+            "verify_tls": false,
+            "url": "https://localhost:8443/city/Paris"
+          }
+        }
+      ]
+    },
+    "method": [
+      {
+        "type": "action",
+        "name": "swap-to-expired-cert",
+        "provider": {
+          "type": "process",
+          "path": "cp",
+          "arguments": "expired-cert.pem cert.pem"
+        }
+      },
+      {
+        "type": "probe",
+        "name": "read-tls-cert-expiry-date",
+        "provider": {
+          "type": "process",
+          "path": "openssl",
+          "arguments": "x509 -enddate -noout -in cert.pem"
+        }
+      },
+      {
+        "type": "action",
+        "name": "restart-astre-service-to-pick-up-certificate",
+        "provider": {
+          "type": "process",
+          "path": "pkill",
+          "arguments": "--echo -HUP -F astre.pid"
+        }
+      },
+      {
+        "type": "action",
+        "name": "restart-sunset-service-to-pick-up-certificate",
+        "provider": {
+          "type": "process",
+          "path": "pkill",
+          "arguments": "--echo -HUP -F sunset.pid"
+        },
+        "pauses": {
+          "after": 1
+        }
+      }
+    ],
+    "rollbacks": [
+      {
+        "type": "action",
+        "name": "swap-to-vald-cert",
+        "provider": {
+          "type": "process",
+          "path": "cp",
+          "arguments": "valid-cert.pem cert.pem"
+        }
+      },
+      {
+        "ref": "restart-astre-service-to-pick-up-certificate"
+      },
+      {
+        "ref": "restart-sunset-service-to-pick-up-certificate"
+      }
+    ],
+    "dry": false
+  },
+  "start": "2019-02-15T13:44:54.907659",
+  "status": "failed",
+  "deviated": true,
+  "steady_states": {
+    "before": {
+      "steady_state_met": true,
+      "probes": [
+        {
+          "activity": {
+            "type": "probe",
+            "name": "the-astre-service-must-be-running",
+            "tolerance": true,
+            "provider": {
+              "type": "python",
+              "module": "os.path",
+              "func": "exists",
+              "arguments": {
+                "path": "astre.pid"
+              }
+            }
+          },
+          "output": true,
+          "status": "succeeded",
+          "start": "2019-02-15T13:44:54.909340",
+          "end": "2019-02-15T13:44:54.910333",
+          "duration": 0.000993,
+          "tolerance_met": true
+        },
+        {
+          "activity": {
+            "type": "probe",
+            "name": "the-sunset-service-must-be-running",
+            "tolerance": true,
+            "provider": {
+              "type": "python",
+              "module": "os.path",
+              "func": "exists",
+              "arguments": {
+                "path": "sunset.pid"
+              }
+            }
+          },
+          "output": true,
+          "status": "succeeded",
+          "start": "2019-02-15T13:44:54.910905",
+          "end": "2019-02-15T13:44:54.911504",
+          "duration": 0.000599,
+          "tolerance_met": true
+        },
+        {
+          "activity": {
+            "type": "probe",
+            "name": "we-can-request-sunset",
+            "tolerance": 200,
+            "provider": {
+              "type": "http",
+              "timeout": 3,
+              "verify_tls": false,
+              "url": "https://localhost:8443/city/Paris"
+            }
+          },
+          "output": {
+            "status": 200,
+            "headers": {
+              "Content-Type": "text/plain;charset=utf-8",
+              "Server": "CherryPy/18.1.0",
+              "Date": "Fri, 15 Feb 2019 13:44:54 GMT",
+              "Content-Length": "59"
+            },
+            "body": "The sunset will occur at 2019-02-15T18:10:46+01:00 in Paris"
+          },
+          "status": "succeeded",
+          "start": "2019-02-15T13:44:54.911846",
+          "end": "2019-02-15T13:44:54.955909",
+          "duration": 0.044063,
+          "tolerance_met": true
+        }
+      ]
+    },
+    "after": {
+      "steady_state_met": false,
+      "probes": [
+        {
+          "activity": {
+            "type": "probe",
+            "name": "the-astre-service-must-be-running",
+            "tolerance": true,
+            "provider": {
+              "type": "python",
+              "module": "os.path",
+              "func": "exists",
+              "arguments": {
+                "path": "astre.pid"
+              }
+            }
+          },
+          "output": false,
+          "status": "succeeded",
+          "start": "2019-02-15T13:44:55.994320",
+          "end": "2019-02-15T13:44:55.996729",
+          "duration": 0.002409,
+          "tolerance_met": false
+        }
+      ]
+    }
+  },
+  "run": [
+    {
+      "activity": {
+        "type": "action",
+        "name": "swap-to-expired-cert",
+        "provider": {
+          "type": "process",
+          "path": "cp",
+          "arguments": "expired-cert.pem cert.pem"
+        }
+      },
+      "output": {
+        "status": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "status": "succeeded",
+      "start": "2019-02-15T13:44:54.956231",
+      "end": "2019-02-15T13:44:54.960603",
+      "duration": 0.004372
+    },
+    {
+      "activity": {
+        "type": "probe",
+        "name": "read-tls-cert-expiry-date",
+        "provider": {
+          "type": "process",
+          "path": "openssl",
+          "arguments": "x509 -enddate -noout -in cert.pem"
+        }
+      },
+      "output": {
+        "status": 0,
+        "stdout": "notAfter=May  5 15:00:00 2018 GMT\n",
+        "stderr": ""
+      },
+      "status": "succeeded",
+      "start": "2019-02-15T13:44:54.960774",
+      "end": "2019-02-15T13:44:54.969087",
+      "duration": 0.008313
+    },
+    {
+      "activity": {
+        "type": "action",
+        "name": "restart-astre-service-to-pick-up-certificate",
+        "provider": {
+          "type": "process",
+          "path": "pkill",
+          "arguments": "--echo -HUP -F astre.pid"
+        }
+      },
+      "output": {
+        "status": 0,
+        "stdout": " killed (pid 13635)\n",
+        "stderr": ""
+      },
+      "status": "succeeded",
+      "start": "2019-02-15T13:44:54.969244",
+      "end": "2019-02-15T13:44:54.980585",
+      "duration": 0.011341
+    },
+    {
+      "activity": {
+        "type": "action",
+        "name": "restart-sunset-service-to-pick-up-certificate",
+        "provider": {
+          "type": "process",
+          "path": "pkill",
+          "arguments": "--echo -HUP -F sunset.pid"
+        },
+        "pauses": {
+          "after": 1
+        }
+      },
+      "output": {
+        "status": 0,
+        "stdout": " killed (pid 14096)\n",
+        "stderr": ""
+      },
+      "status": "succeeded",
+      "start": "2019-02-15T13:44:54.980767",
+      "end": "2019-02-15T13:44:54.990752",
+      "duration": 0.009985
+    }
+  ],
+  "rollbacks": [
+    {
+      "activity": {
+        "type": "action",
+        "name": "swap-to-vald-cert",
+        "provider": {
+          "type": "process",
+          "path": "cp",
+          "arguments": "valid-cert.pem cert.pem"
+        }
+      },
+      "output": {
+        "status": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "status": "succeeded",
+      "start": "2019-02-15T13:44:55.997897",
+      "end": "2019-02-15T13:44:56.002362",
+      "duration": 0.004465
+    },
+    {
+      "activity": {
+        "type": "action",
+        "name": "restart-astre-service-to-pick-up-certificate",
+        "provider": {
+          "type": "process",
+          "path": "pkill",
+          "arguments": "--echo -HUP -F astre.pid"
+        }
+      },
+      "output": {
+        "status": 1,
+        "stdout": "",
+        "stderr": "pkill: pidfile not valid\nTry `pkill --help' for more information.\n"
+      },
+      "status": "succeeded",
+      "start": "2019-02-15T13:44:56.002717",
+      "end": "2019-02-15T13:44:56.008572",
+      "duration": 0.005855
+    },
+    {
+      "activity": {
+        "type": "action",
+        "name": "restart-sunset-service-to-pick-up-certificate",
+        "provider": {
+          "type": "process",
+          "path": "pkill",
+          "arguments": "--echo -HUP -F sunset.pid"
+        },
+        "pauses": {
+          "after": 1
+        }
+      },
+      "output": {
+        "status": 1,
+        "stdout": "",
+        "stderr": "pkill: pidfile not valid\nTry `pkill --help' for more information.\n"
+      },
+      "status": "succeeded",
+      "start": "2019-02-15T13:44:56.009003",
+      "end": "2019-02-15T13:44:56.014003",
+      "duration": 0.005
+    }
+  ],
+  "end": "2019-02-15T13:44:57.015724",
+  "duration": 2.1237666606903076
+}

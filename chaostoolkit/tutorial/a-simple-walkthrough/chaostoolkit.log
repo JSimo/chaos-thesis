@@ -1,0 +1,190 @@
+[36m[2019-02-15 14:41:05 DEBUG][39m ###############################################################################
+[36m[2019-02-15 14:41:05 DEBUG][39m Running command 'run'
+[36m[2019-02-15 14:41:05 DEBUG][39m Using settings file '/home/jsimo/.chaostoolkit/settings.yaml'
+[33m[2019-02-15 14:41:06 WARNING][39m 
+    There is a new version (1.0.0rc3) of the chaostoolkit available.
+    You may upgrade by typing:
+    
+    $ pip install -U chaostoolkit
+    
+    Please review changes at https://github.com/chaostoolkit/chaostoolkit/blob/master/CHANGELOG.md
+    
+[36m[2019-02-15 14:41:06 DEBUG][39m The Chaos Toolkit settings file could not be found at '/home/jsimo/.chaostoolkit/settings.yaml'.
+[36m[2019-02-15 14:41:06 DEBUG][39m Building activity cache...
+[36m[2019-02-15 14:41:06 DEBUG][39m Cached 7 activities
+[32m[2019-02-15 14:41:06 INFO][39m Validating the experiment's syntax
+[36m[2019-02-15 14:41:06 DEBUG][39m Loading configuration...
+[36m[2019-02-15 14:41:06 DEBUG][39m Loading secrets...
+[36m[2019-02-15 14:41:06 DEBUG][39m Secrets loaded
+[32m[2019-02-15 14:41:06 INFO][39m Experiment looks valid
+[36m[2019-02-15 14:41:06 DEBUG][39m Clearing activities cache
+[36m[2019-02-15 14:41:06 DEBUG][39m Building activity cache...
+[36m[2019-02-15 14:41:06 DEBUG][39m Cached 7 activities
+[32m[2019-02-15 14:41:06 INFO][39m Running experiment: What is the impact of an expired certificate on our application chain?
+[36m[2019-02-15 14:41:06 DEBUG][39m Loading configuration...
+[36m[2019-02-15 14:41:06 DEBUG][39m Loading secrets...
+[36m[2019-02-15 14:41:06 DEBUG][39m Secrets loaded
+[36m[2019-02-15 14:41:06 DEBUG][39m Initializing controls
+[32m[2019-02-15 14:41:06 INFO][39m Steady state hypothesis: Application responds
+[32m[2019-02-15 14:41:06 INFO][39m Probe: the-astre-service-must-be-running
+[36m[2019-02-15 14:41:06 DEBUG][39m Activity 'the-astre-service-must-be-running' loaded from '/usr/lib/python3.6/genericpath.py'
+[36m[2019-02-15 14:41:06 DEBUG][39m   => succeeded with 'False'
+[36m[2019-02-15 14:41:06 DEBUG][39m allowed tolerance is True
+[2019-02-15 14:41:06 CRITICAL] Steady state probe 'the-astre-service-must-be-running' is not in the given tolerance so failing this experiment
+[32m[2019-02-15 14:41:06 INFO][39m Let's rollback...
+[32m[2019-02-15 14:41:06 INFO][39m Rollback: swap-to-vald-cert
+[32m[2019-02-15 14:41:06 INFO][39m Action: swap-to-vald-cert
+[36m[2019-02-15 14:41:06 DEBUG][39m Running: /bin/cp valid-cert.pem cert.pem
+[36m[2019-02-15 14:41:06 DEBUG][39m   => succeeded with '{'status': 0, 'stdout': '', 'stderr': ''}'
+[32m[2019-02-15 14:41:06 INFO][39m Rollback: None
+[32m[2019-02-15 14:41:06 INFO][39m Action: restart-astre-service-to-pick-up-certificate
+[36m[2019-02-15 14:41:06 DEBUG][39m Running: /usr/bin/pkill --echo -HUP -F astre.pid
+[36m[2019-02-15 14:41:06 DEBUG][39m Data encoding detected as 'ascii' with a confidence of 1.0
+[36m[2019-02-15 14:41:06 DEBUG][39m   => succeeded with '{'status': 1, 'stdout': '', 'stderr': "pkill: pidfile not valid\nTry `pkill --help' for more information.\n"}'
+[32m[2019-02-15 14:41:06 INFO][39m Rollback: None
+[32m[2019-02-15 14:41:06 INFO][39m Action: restart-sunset-service-to-pick-up-certificate
+[36m[2019-02-15 14:41:06 DEBUG][39m Running: /usr/bin/pkill --echo -HUP -F sunset.pid
+[36m[2019-02-15 14:41:06 DEBUG][39m Data encoding detected as 'ascii' with a confidence of 1.0
+[36m[2019-02-15 14:41:06 DEBUG][39m   => succeeded with '{'status': 1, 'stdout': '', 'stderr': "pkill: pidfile not valid\nTry `pkill --help' for more information.\n"}'
+[32m[2019-02-15 14:41:06 INFO][39m Pausing after activity for 1s...
+[32m[2019-02-15 14:41:07 INFO][39m Experiment ended with status: failed
+[36m[2019-02-15 14:41:07 DEBUG][39m Cleaning up controls
+[36m[2019-02-15 14:41:07 DEBUG][39m Clearing activities cache
+[36m[2019-02-15 14:43:22 DEBUG][39m ###############################################################################
+[36m[2019-02-15 14:43:22 DEBUG][39m Running command 'run'
+[36m[2019-02-15 14:43:22 DEBUG][39m Using settings file '/home/jsimo/.chaostoolkit/settings.yaml'
+[33m[2019-02-15 14:43:23 WARNING][39m 
+    There is a new version (1.0.0rc3) of the chaostoolkit available.
+    You may upgrade by typing:
+    
+    $ pip install -U chaostoolkit
+    
+    Please review changes at https://github.com/chaostoolkit/chaostoolkit/blob/master/CHANGELOG.md
+    
+[36m[2019-02-15 14:43:23 DEBUG][39m The Chaos Toolkit settings file could not be found at '/home/jsimo/.chaostoolkit/settings.yaml'.
+[36m[2019-02-15 14:43:23 DEBUG][39m Building activity cache...
+[36m[2019-02-15 14:43:23 DEBUG][39m Cached 7 activities
+[32m[2019-02-15 14:43:23 INFO][39m Validating the experiment's syntax
+[36m[2019-02-15 14:43:23 DEBUG][39m Loading configuration...
+[36m[2019-02-15 14:43:23 DEBUG][39m Loading secrets...
+[36m[2019-02-15 14:43:23 DEBUG][39m Secrets loaded
+[32m[2019-02-15 14:43:23 INFO][39m Experiment looks valid
+[36m[2019-02-15 14:43:23 DEBUG][39m Clearing activities cache
+[36m[2019-02-15 14:43:23 DEBUG][39m Building activity cache...
+[36m[2019-02-15 14:43:23 DEBUG][39m Cached 7 activities
+[32m[2019-02-15 14:43:23 INFO][39m Running experiment: What is the impact of an expired certificate on our application chain?
+[36m[2019-02-15 14:43:23 DEBUG][39m Loading configuration...
+[36m[2019-02-15 14:43:23 DEBUG][39m Loading secrets...
+[36m[2019-02-15 14:43:23 DEBUG][39m Secrets loaded
+[36m[2019-02-15 14:43:23 DEBUG][39m Initializing controls
+[32m[2019-02-15 14:43:23 INFO][39m Steady state hypothesis: Application responds
+[32m[2019-02-15 14:43:23 INFO][39m Probe: the-astre-service-must-be-running
+[36m[2019-02-15 14:43:23 DEBUG][39m Activity 'the-astre-service-must-be-running' loaded from '/usr/lib/python3.6/genericpath.py'
+[36m[2019-02-15 14:43:23 DEBUG][39m   => succeeded with 'True'
+[36m[2019-02-15 14:43:23 DEBUG][39m allowed tolerance is True
+[32m[2019-02-15 14:43:23 INFO][39m Probe: the-sunset-service-must-be-running
+[36m[2019-02-15 14:43:23 DEBUG][39m Activity 'the-sunset-service-must-be-running' loaded from '/usr/lib/python3.6/genericpath.py'
+[36m[2019-02-15 14:43:23 DEBUG][39m   => succeeded with 'False'
+[36m[2019-02-15 14:43:23 DEBUG][39m allowed tolerance is True
+[2019-02-15 14:43:23 CRITICAL] Steady state probe 'the-sunset-service-must-be-running' is not in the given tolerance so failing this experiment
+[32m[2019-02-15 14:43:23 INFO][39m Let's rollback...
+[32m[2019-02-15 14:43:23 INFO][39m Rollback: swap-to-vald-cert
+[32m[2019-02-15 14:43:23 INFO][39m Action: swap-to-vald-cert
+[36m[2019-02-15 14:43:23 DEBUG][39m Running: /bin/cp valid-cert.pem cert.pem
+[36m[2019-02-15 14:43:23 DEBUG][39m   => succeeded with '{'status': 0, 'stdout': '', 'stderr': ''}'
+[32m[2019-02-15 14:43:23 INFO][39m Rollback: None
+[32m[2019-02-15 14:43:23 INFO][39m Action: restart-astre-service-to-pick-up-certificate
+[36m[2019-02-15 14:43:23 DEBUG][39m Running: /usr/bin/pkill --echo -HUP -F astre.pid
+[36m[2019-02-15 14:43:23 DEBUG][39m Data encoding detected as 'ascii' with a confidence of 1.0
+[36m[2019-02-15 14:43:23 DEBUG][39m   => succeeded with '{'status': 0, 'stdout': ' killed (pid 12569)\n', 'stderr': ''}'
+[32m[2019-02-15 14:43:23 INFO][39m Rollback: None
+[32m[2019-02-15 14:43:23 INFO][39m Action: restart-sunset-service-to-pick-up-certificate
+[36m[2019-02-15 14:43:23 DEBUG][39m Running: /usr/bin/pkill --echo -HUP -F sunset.pid
+[36m[2019-02-15 14:43:23 DEBUG][39m Data encoding detected as 'ascii' with a confidence of 1.0
+[36m[2019-02-15 14:43:23 DEBUG][39m   => succeeded with '{'status': 1, 'stdout': '', 'stderr': "pkill: pidfile not valid\nTry `pkill --help' for more information.\n"}'
+[32m[2019-02-15 14:43:23 INFO][39m Pausing after activity for 1s...
+[32m[2019-02-15 14:43:24 INFO][39m Experiment ended with status: failed
+[36m[2019-02-15 14:43:24 DEBUG][39m Cleaning up controls
+[36m[2019-02-15 14:43:24 DEBUG][39m Clearing activities cache
+[36m[2019-02-15 14:44:54 DEBUG][39m ###############################################################################
+[36m[2019-02-15 14:44:54 DEBUG][39m Running command 'run'
+[36m[2019-02-15 14:44:54 DEBUG][39m Using settings file '/home/jsimo/.chaostoolkit/settings.yaml'
+[33m[2019-02-15 14:44:54 WARNING][39m 
+    There is a new version (1.0.0rc3) of the chaostoolkit available.
+    You may upgrade by typing:
+    
+    $ pip install -U chaostoolkit
+    
+    Please review changes at https://github.com/chaostoolkit/chaostoolkit/blob/master/CHANGELOG.md
+    
+[36m[2019-02-15 14:44:54 DEBUG][39m The Chaos Toolkit settings file could not be found at '/home/jsimo/.chaostoolkit/settings.yaml'.
+[36m[2019-02-15 14:44:54 DEBUG][39m Building activity cache...
+[36m[2019-02-15 14:44:54 DEBUG][39m Cached 7 activities
+[32m[2019-02-15 14:44:54 INFO][39m Validating the experiment's syntax
+[36m[2019-02-15 14:44:54 DEBUG][39m Loading configuration...
+[36m[2019-02-15 14:44:54 DEBUG][39m Loading secrets...
+[36m[2019-02-15 14:44:54 DEBUG][39m Secrets loaded
+[32m[2019-02-15 14:44:54 INFO][39m Experiment looks valid
+[36m[2019-02-15 14:44:54 DEBUG][39m Clearing activities cache
+[36m[2019-02-15 14:44:54 DEBUG][39m Building activity cache...
+[36m[2019-02-15 14:44:54 DEBUG][39m Cached 7 activities
+[32m[2019-02-15 14:44:54 INFO][39m Running experiment: What is the impact of an expired certificate on our application chain?
+[36m[2019-02-15 14:44:54 DEBUG][39m Loading configuration...
+[36m[2019-02-15 14:44:54 DEBUG][39m Loading secrets...
+[36m[2019-02-15 14:44:54 DEBUG][39m Secrets loaded
+[36m[2019-02-15 14:44:54 DEBUG][39m Initializing controls
+[32m[2019-02-15 14:44:54 INFO][39m Steady state hypothesis: Application responds
+[32m[2019-02-15 14:44:54 INFO][39m Probe: the-astre-service-must-be-running
+[36m[2019-02-15 14:44:54 DEBUG][39m Activity 'the-astre-service-must-be-running' loaded from '/usr/lib/python3.6/genericpath.py'
+[36m[2019-02-15 14:44:54 DEBUG][39m   => succeeded with 'True'
+[36m[2019-02-15 14:44:54 DEBUG][39m allowed tolerance is True
+[32m[2019-02-15 14:44:54 INFO][39m Probe: the-sunset-service-must-be-running
+[36m[2019-02-15 14:44:54 DEBUG][39m Activity 'the-sunset-service-must-be-running' loaded from '/usr/lib/python3.6/genericpath.py'
+[36m[2019-02-15 14:44:54 DEBUG][39m   => succeeded with 'True'
+[36m[2019-02-15 14:44:54 DEBUG][39m allowed tolerance is True
+[32m[2019-02-15 14:44:54 INFO][39m Probe: we-can-request-sunset
+[36m[2019-02-15 14:44:54 DEBUG][39m   => succeeded with '{'status': 200, 'headers': {'Content-Type': 'text/plain;charset=utf-8', 'Server': 'CherryPy/18.1.0', 'Date': 'Fri, 15 Feb 2019 13:44:54 GMT', 'Content-Length': '59'}, 'body': 'The sunset will occur at 2019-02-15T18:10:46+01:00 in Paris'}'
+[36m[2019-02-15 14:44:54 DEBUG][39m allowed tolerance is 200
+[32m[2019-02-15 14:44:54 INFO][39m Steady state hypothesis is met!
+[32m[2019-02-15 14:44:54 INFO][39m Action: swap-to-expired-cert
+[36m[2019-02-15 14:44:54 DEBUG][39m Running: /bin/cp expired-cert.pem cert.pem
+[36m[2019-02-15 14:44:54 DEBUG][39m   => succeeded with '{'status': 0, 'stdout': '', 'stderr': ''}'
+[32m[2019-02-15 14:44:54 INFO][39m Probe: read-tls-cert-expiry-date
+[36m[2019-02-15 14:44:54 DEBUG][39m Running: /usr/bin/openssl x509 -enddate -noout -in cert.pem
+[36m[2019-02-15 14:44:54 DEBUG][39m Data encoding detected as 'ascii' with a confidence of 1.0
+[36m[2019-02-15 14:44:54 DEBUG][39m   => succeeded with '{'status': 0, 'stdout': 'notAfter=May  5 15:00:00 2018 GMT\n', 'stderr': ''}'
+[32m[2019-02-15 14:44:54 INFO][39m Action: restart-astre-service-to-pick-up-certificate
+[36m[2019-02-15 14:44:54 DEBUG][39m Running: /usr/bin/pkill --echo -HUP -F astre.pid
+[36m[2019-02-15 14:44:54 DEBUG][39m Data encoding detected as 'ascii' with a confidence of 1.0
+[36m[2019-02-15 14:44:54 DEBUG][39m   => succeeded with '{'status': 0, 'stdout': ' killed (pid 13635)\n', 'stderr': ''}'
+[32m[2019-02-15 14:44:54 INFO][39m Action: restart-sunset-service-to-pick-up-certificate
+[36m[2019-02-15 14:44:54 DEBUG][39m Running: /usr/bin/pkill --echo -HUP -F sunset.pid
+[36m[2019-02-15 14:44:54 DEBUG][39m Data encoding detected as 'ascii' with a confidence of 1.0
+[36m[2019-02-15 14:44:54 DEBUG][39m   => succeeded with '{'status': 0, 'stdout': ' killed (pid 14096)\n', 'stderr': ''}'
+[32m[2019-02-15 14:44:54 INFO][39m Pausing after activity for 1s...
+[32m[2019-02-15 14:44:55 INFO][39m Steady state hypothesis: Application responds
+[32m[2019-02-15 14:44:55 INFO][39m Probe: the-astre-service-must-be-running
+[36m[2019-02-15 14:44:55 DEBUG][39m Activity 'the-astre-service-must-be-running' loaded from '/usr/lib/python3.6/genericpath.py'
+[36m[2019-02-15 14:44:55 DEBUG][39m   => succeeded with 'False'
+[36m[2019-02-15 14:44:55 DEBUG][39m allowed tolerance is True
+[2019-02-15 14:44:55 CRITICAL] Steady state probe 'the-astre-service-must-be-running' is not in the given tolerance so failing this experiment
+[32m[2019-02-15 14:44:55 INFO][39m Let's rollback...
+[32m[2019-02-15 14:44:55 INFO][39m Rollback: swap-to-vald-cert
+[32m[2019-02-15 14:44:55 INFO][39m Action: swap-to-vald-cert
+[36m[2019-02-15 14:44:55 DEBUG][39m Running: /bin/cp valid-cert.pem cert.pem
+[36m[2019-02-15 14:44:56 DEBUG][39m   => succeeded with '{'status': 0, 'stdout': '', 'stderr': ''}'
+[32m[2019-02-15 14:44:56 INFO][39m Rollback: None
+[32m[2019-02-15 14:44:56 INFO][39m Action: restart-astre-service-to-pick-up-certificate
+[36m[2019-02-15 14:44:56 DEBUG][39m Running: /usr/bin/pkill --echo -HUP -F astre.pid
+[36m[2019-02-15 14:44:56 DEBUG][39m Data encoding detected as 'ascii' with a confidence of 1.0
+[36m[2019-02-15 14:44:56 DEBUG][39m   => succeeded with '{'status': 1, 'stdout': '', 'stderr': "pkill: pidfile not valid\nTry `pkill --help' for more information.\n"}'
+[32m[2019-02-15 14:44:56 INFO][39m Rollback: None
+[32m[2019-02-15 14:44:56 INFO][39m Action: restart-sunset-service-to-pick-up-certificate
+[36m[2019-02-15 14:44:56 DEBUG][39m Running: /usr/bin/pkill --echo -HUP -F sunset.pid
+[36m[2019-02-15 14:44:56 DEBUG][39m Data encoding detected as 'ascii' with a confidence of 1.0
+[36m[2019-02-15 14:44:56 DEBUG][39m   => succeeded with '{'status': 1, 'stdout': '', 'stderr': "pkill: pidfile not valid\nTry `pkill --help' for more information.\n"}'
+[32m[2019-02-15 14:44:56 INFO][39m Pausing after activity for 1s...
+[32m[2019-02-15 14:44:57 INFO][39m Experiment ended with status: deviated
+[32m[2019-02-15 14:44:57 INFO][39m The steady-state has deviated, a weakness may have been discovered
+[36m[2019-02-15 14:44:57 DEBUG][39m Cleaning up controls
+[36m[2019-02-15 14:44:57 DEBUG][39m Clearing activities cache

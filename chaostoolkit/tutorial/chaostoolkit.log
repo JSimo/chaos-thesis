@@ -1,0 +1,11 @@
+[36m[2019-02-15 14:40:49 DEBUG][39m ###############################################################################
+[36m[2019-02-15 14:40:49 DEBUG][39m Running command 'run'
+[36m[2019-02-15 14:40:49 DEBUG][39m Using settings file '/home/jsimo/.chaostoolkit/settings.yaml'
+[33m[2019-02-15 14:40:50 WARNING][39m 
+    There is a new version (1.0.0rc3) of the chaostoolkit available.
+    You may upgrade by typing:
+    
+    $ pip install -U chaostoolkit
+    
+    Please review changes at https://github.com/chaostoolkit/chaostoolkit/blob/master/CHANGELOG.md
+    
