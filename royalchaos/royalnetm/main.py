@@ -1,22 +1,26 @@
 import pyshark
 import time
 
-from prometheus_client import Counter, Gauge, Histogram, start_http_server
+from prometheus_client import CollectorRegistry, Counter, Gauge, Histogram, start_http_server
+
+# Global variables
+HTTP_REQUESTS = []
 
 # Number of http requests currently being processed.
 http_inprogress_requests = Gauge('http_inprogress_requests', '<description/>')
 http_request_latency = Histogram('http_request_latency_ms', '<description/>')
-http_request_total = Counter('http_request_total', '<description/>', ['method', 'endpoint'])
-
-# Global variables
-HTTP_REQUESTS = []
+http_counter = Counter(
+    'http_request_total', 
+    '<description/>', 
+    ['method', 'uri', 'response_code', 'response_time'])#, 
 
 # Main
 def main():
     #Start prometheus exporter.
     start_http_server(12301)
 
-    #Setup of pyshark
+    #Setup of pyshark 
+    # TODO: move interface and ip to environment variables...
     capture = pyshark.LiveCapture(interface='eth0',  bpf_filter='host 172.17.0.2')#, display_filter='http')
     capture.set_debug()
     capture
@@ -38,23 +42,28 @@ def process_http(http):
 # Process request and monitor appropriately.
 def process_http_request(request):
     HTTP_REQUESTS.append(request)
-    print(request.request_number)
+    #print(request.request_number)
     http_inprogress_requests.inc() 
-    print(dir(request))
+    #print(dir(request))
 
 # Process response and monitor appropriately. 
 def process_http_response(response):
-    print(response.response_number)
+    #print(response.response_number)
     #print('Processing time: {:.2f}ms'.format(float(response.time)*1000))
-    time = float(response.time)*1000
+    response_time = float(response.time)*1000
     http_request_latency.observe(float(response.time))   
     http_inprogress_requests.dec()
-    print(dir(response))
+    #print(dir(response))
     request = HTTP_REQUESTS[int(response.response_number)-1]
     print("METHOD={}".format(request.request_method))
     print("URI={}".format(request.request_uri))
-    print("RESPONSE_TIME={:.2f}ms".format(time))
-    print("RESPONSE_CODE={}".format(response.response_code))
-
+    print("RESPONSE_TIME={:.2f}ms".format(response_time))
+    print("RESPONSE_CODE={} {}".format(response.response_code, response.response_phrase))
+    http_counter.labels(
+        method=request.request_method,
+        uri=request.request_uri,
+        response_code=response.response_code,
+        response_time=response_time).inc()
+    
 if __name__ == '__main__':
     main()
