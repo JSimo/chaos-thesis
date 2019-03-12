@@ -33,27 +33,20 @@ def main():
 # Determine if it is a request or respone.
 def process_http(http):
     if 'request' in http.field_names:
-        print('REQUEST!')
         process_http_request(http)
     elif 'response' in http.field_names:
-        print('RESPONSE!')
         process_http_response(http) 
 
 # Process request and monitor appropriately.
 def process_http_request(request):
     HTTP_REQUESTS.append(request)
-    #print(request.request_number)
     http_inprogress_requests.inc() 
-    #print(dir(request))
 
 # Process response and monitor appropriately. 
 def process_http_response(response):
-    #print(response.response_number)
-    #print('Processing time: {:.2f}ms'.format(float(response.time)*1000))
     response_time = float(response.time)*1000
     http_request_latency.observe(float(response.time))   
     http_inprogress_requests.dec()
-    #print(dir(response))
     request = HTTP_REQUESTS[int(response.response_number)-1]
     print("METHOD={}".format(request.request_method))
     print("URI={}".format(request.request_uri))
