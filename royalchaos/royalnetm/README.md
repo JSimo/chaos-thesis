@@ -25,3 +25,16 @@ syscall monitoring by sharing the PID namespace. <- This usecase should be easie
 sum(http_request_total) by (uri)
 sum(http_request_total) by (uri)
 
+# design thoughts:
+master agent:
+  -> launches monitoring sidecar (with a correct config to filter on ip etc.)
+  -> updates prometheus scraping config that is mouted somewhere accessable. 
+  -> adds prometheus server network to the container under test. 
+  -> verifies that networked container monitoring metrics have started to be recorded. (This step requires there to be traffic passing to the container, if it is doing nothing, hard to verify, maybe send a invalid request to the port(s) that we scrape from the docker api.)
+  -> launch syscall monitoring sidecar (shared pid-namespace)
+  -> connect network prometheus network to syscall monitoring sidecar. 
+  -> verify that the sidecar is giving us data.
+  -> READY for experiments! Now we have reached observability! 
+  -> Execute perturbation.
+  -> Watch metrics => give conclucsions based on metric.
+  
