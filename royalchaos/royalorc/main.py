@@ -35,11 +35,12 @@ def startMonitoring(container):
     container_ip = getIpFromContainer(container)
 
     #1. Launch network monitoring utilizing the same networking namespace/stack.
-    network_container = docker_client.containers.run(
+    print(docker_client.containers.run(
         'jsimo2/royalnetm',
         detach=True,
+        environment=['ROYALNETM_IP='+container_ip],
         name='jsimo2.royalnetm.'+container_name,
-        network_mode='container:'+container_name)
+        network_mode='container:'+container_name))
     print("Launched network container with IP", container_ip)
 
     #1.1 Connect prometheus to container and get IP.

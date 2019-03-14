@@ -1,5 +1,6 @@
 import pyshark
 import time
+import os
 
 from prometheus_client import Counter, Gauge, Histogram, start_http_server
 
@@ -21,7 +22,7 @@ def main():
 
     #Setup of pyshark
     # TODO: move interface and ip to environment variables...
-    capture = pyshark.LiveCapture(interface='eth0',  bpf_filter='host 172.17.0.2 and not port 12301')#, display_filter='http')
+    capture = pyshark.LiveCapture(interface='eth0',  bpf_filter='host ' + os.environ['ROYALNETM_IP'] + ' and not port 12301')#, display_filter='http')
     capture.set_debug()
     capture
 
