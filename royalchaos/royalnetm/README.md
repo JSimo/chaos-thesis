@@ -1,5 +1,7 @@
 # README
 `docker run --network=container:3460fd797b2d --cap-add="NET_ADMIN" -it <image>`
+We do not seem to require NET_ADMIN if we _only_ listen.
+`docker run --network=container:3460fd797b2d -it <image>`
 
 
 # The problem.
@@ -37,4 +39,3 @@ master agent:
   -> READY for experiments! Now we have reached observability! 
   -> Execute perturbation.
   -> Watch metrics => give conclucsions based on metric.
-  
