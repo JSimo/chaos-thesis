@@ -1,0 +1,1 @@
+[{"targets": ["172.26.0.2:12301"], "labels": {"job": "hello_world"}}]

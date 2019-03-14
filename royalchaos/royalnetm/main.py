@@ -1,7 +1,7 @@
 import pyshark
 import time
 
-from prometheus_client import CollectorRegistry, Counter, Gauge, Histogram, start_http_server
+from prometheus_client import Counter, Gauge, Histogram, start_http_server
 
 # Global variables
 HTTP_REQUESTS = []
@@ -10,18 +10,18 @@ HTTP_REQUESTS = []
 http_inprogress_requests = Gauge('http_inprogress_requests', '<description/>')
 http_request_latency = Histogram('http_request_latency_ms', '<description/>')
 http_counter = Counter(
-    'http_request_total', 
-    '<description/>', 
-    ['method', 'uri', 'response_code', 'response_time'])#, 
+    'http_request_total',
+    '<description/>',
+    ['method', 'uri', 'response_code', 'response_time'])#,
 
 # Main
 def main():
     #Start prometheus exporter.
     start_http_server(12301)
 
-    #Setup of pyshark 
+    #Setup of pyshark
     # TODO: move interface and ip to environment variables...
-    capture = pyshark.LiveCapture(interface='eth0',  bpf_filter='host 172.17.0.2')#, display_filter='http')
+    capture = pyshark.LiveCapture(interface='eth0',  bpf_filter='host 172.17.0.2 and not port 12301')#, display_filter='http')
     capture.set_debug()
     capture
 
@@ -35,17 +35,17 @@ def process_http(http):
     if 'request' in http.field_names:
         process_http_request(http)
     elif 'response' in http.field_names:
-        process_http_response(http) 
+        process_http_response(http)
 
 # Process request and monitor appropriately.
 def process_http_request(request):
     HTTP_REQUESTS.append(request)
-    http_inprogress_requests.inc() 
+    http_inprogress_requests.inc()
 
-# Process response and monitor appropriately. 
+# Process response and monitor appropriately.
 def process_http_response(response):
     response_time = float(response.time)*1000
-    http_request_latency.observe(float(response.time))   
+    http_request_latency.observe(float(response.time))
     http_inprogress_requests.dec()
     request = HTTP_REQUESTS[int(response.response_number)-1]
     print("METHOD={}".format(request.request_method))
@@ -57,6 +57,6 @@ def process_http_response(response):
         uri=request.request_uri,
         response_code=response.response_code,
         response_time=response_time).inc()
-    
+
 if __name__ == '__main__':
     main()

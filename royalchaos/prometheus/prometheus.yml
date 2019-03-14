@@ -23,24 +23,11 @@ scrape_configs:
          - targets: ['localhost:9090']
 
 
-  - job_name: 'royalnetm'
+  - job_name: 'json-monitoring'
 
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 5s
 
-    static_configs:
-      - targets: ['172.26.0.2:12301'] # OBS: requires to be manually speicifed?
-
-  #- job_name: 'node-exporter'
-
-    # Override the global default and scrape targets from this job every 5 seconds.
-  #  scrape_interval: 5s
-
-  #  dns_sd_configs:
-  #  - names:
-  #    - 'tasks.node-exporter'
-  #    type: 'A'
-  #    port: 9100
-    
-  #  static_configs:
-  #    - targets: ['node-exporter:9100']
+    file_sd_configs:
+      - files: 
+        - '/etc/prometheus/*.json'
