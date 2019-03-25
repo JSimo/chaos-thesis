@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="33cm" height="11cm" viewBox="306 164 641 206" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs/>
+  <g id="Background">
+    <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="460" y="366.5">
+      <tspan x="460" y="366.5"></tspan>
+    </text>
+    <g>
+      <rect style="fill: #e5e5e5; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2; stroke: #000000" x="418.9" y="213" width="84" height="47" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="460.9" y="240.925">
+        <tspan x="460.9" y="240.925">Guest OS</tspan>
+      </text>
+      <rect style="fill: #bfbfbf; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2; stroke: #000000" x="419.3" y="190" width="84" height="23.3" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="461.3" y="206.075">
+        <tspan x="461.3" y="206.075">Bins/Libs</tspan>
+      </text>
+      <rect style="fill: #e5e5e5; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2; stroke: #000000" x="419.3" y="166.3" width="84" height="23.3" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="461.3" y="182.375">
+        <tspan x="461.3" y="182.375">Application</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #e5e5e5; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2; stroke: #000000" x="529.9" y="212" width="84" height="47" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="571.9" y="239.925">
+        <tspan x="571.9" y="239.925">Guest OS</tspan>
+      </text>
+      <rect style="fill: #bfbfbf; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2; stroke: #000000" x="530.3" y="189" width="84" height="23.3" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="572.3" y="205.075">
+        <tspan x="572.3" y="205.075">Bins/Libs</tspan>
+      </text>
+      <rect style="fill: #e5e5e5; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2; stroke: #000000" x="530.3" y="165.3" width="84" height="23.3" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="572.3" y="181.375">
+        <tspan x="572.3" y="181.375">Application</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #e5e5e5; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2; stroke: #000000" x="307.8" y="212.3" width="84" height="47" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="349.8" y="240.225">
+        <tspan x="349.8" y="240.225">Guest OS</tspan>
+      </text>
+      <rect style="fill: #bfbfbf; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2; stroke: #000000" x="308.2" y="189.3" width="84" height="23.3" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="350.2" y="205.375">
+        <tspan x="350.2" y="205.375">Bins/Libs</tspan>
+      </text>
+      <rect style="fill: #e5e5e5; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2; stroke: #000000" x="308.2" y="165.6" width="84" height="23.3" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="350.2" y="181.675">
+        <tspan x="350.2" y="181.675">Application</tspan>
+      </text>
+    </g>
+    <g transform="matrix(1.00131,0,0,1,-0.802614,0)">
+      <rect style="fill: #bfbfbf; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2.35099e-37; stroke: #000000" x="308" y="306" width="306" height="24" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="461" y="322.425">
+        <tspan x="461" y="322.425">Infrastructure</tspan>
+      </text>
+    </g>
+    <g transform="matrix(1.00624,0,0,1,-3.83183,0)">
+      <rect style="fill: #e5e5e5; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2.35099e-37; stroke: #000000" x="309.5" y="282" width="304.4" height="24.3" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="461.7" y="298.575">
+        <tspan x="461.7" y="298.575">Host Operating System</tspan>
+      </text>
+    </g>
+    <g transform="matrix(1.00459,0,0,1,-2.81836,0)">
+      <rect style="fill: #bfbfbf; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2.35099e-37; stroke: #000000" x="309" y="259" width="305" height="23.3" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="461.5" y="275.075">
+        <tspan x="461.5" y="275.075">Hypervisor</tspan>
+      </text>
+    </g>
+    <g transform="matrix(0.995425,0,0,1,16.8778,2)">
+      <rect style="fill: #bfbfbf; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2.35099e-37; stroke: #000000" x="629" y="304.35" width="306" height="24" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="782" y="320.775">
+        <tspan x="782" y="320.775">Infrastructure</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #e5e5e5; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2.35099e-37; stroke: #000000" x="643" y="282.35" width="304.4" height="24.3" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="795.2" y="298.925">
+        <tspan x="795.2" y="298.925">Host Operating System</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #e5e5e5; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2; stroke: #000000" x="642.9" y="236.05" width="84" height="23.3" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="684.9" y="252.125">
+        <tspan x="684.9" y="252.125">Bins/Libs</tspan>
+      </text>
+      <rect style="fill: #bfbfbf; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2; stroke: #000000" x="642.9" y="212.35" width="84" height="23.3" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="684.9" y="228.425">
+        <tspan x="684.9" y="228.425">Application</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #e5e5e5; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2; stroke: #000000" x="753" y="235.05" width="84" height="23.3" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="795" y="251.125">
+        <tspan x="795" y="251.125">Bins/Libs</tspan>
+      </text>
+      <rect style="fill: #bfbfbf; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2; stroke: #000000" x="753" y="211.35" width="84" height="23.3" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="795" y="227.425">
+        <tspan x="795" y="227.425">Application</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #e5e5e5; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2; stroke: #000000" x="862.4" y="235.35" width="84" height="23.3" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="904.4" y="251.425">
+        <tspan x="904.4" y="251.425">Bins/Libs</tspan>
+      </text>
+      <rect style="fill: #bfbfbf; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2; stroke: #000000" x="862.4" y="211.65" width="84" height="23.3" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="904.4" y="227.725">
+        <tspan x="904.4" y="227.725">Application</tspan>
+      </text>
+    </g>
+    <g transform="matrix(0.997049,0,0,1,15.8561,2)">
+      <rect style="fill: #bfbfbf; fill-opacity: 1; stroke-opacity: 0; stroke-width: 2.35099e-37; stroke: #000000" x="629" y="256.35" width="305" height="23.3" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="781.5" y="272.425">
+        <tspan x="781.5" y="272.425">Container Runtime</tspan>
+      </text>
+    </g>
+    <text font-size="12.7998" style="fill: #7f7f7f; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="106.6" y="171.3">
+      <tspan x="106.6" y="171.3"></tspan>
+    </text>
+  </g>
+</svg>
