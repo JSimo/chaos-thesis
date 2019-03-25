@@ -31,15 +31,5 @@ def stop(name):
     container = docker_client.containers.get(container_name)
     monitoring.stopMonitoring(container)
 
-#def main():
-#    print('Hello world')
-#    if not 'RORC_TEST' in os.environ:
-#        print('Missing required environment variable \"RORC_TEST\"')
-#        exit(1)
-#    elif 'CLEANUP' in os.environ and os.environ['CLEANUP'] == "true":
-#        container_name = os.environ['RORC_TEST']
-#        container = docker_client.containers.get(container_name)
-#        monitoring.stopMonitoring(container)
-
 if __name__ == '__main__':
     main()
