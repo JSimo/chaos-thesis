@@ -8,19 +8,18 @@ import docker
 # Local imports
 import monitoring
 
-
 # Create docker client
 docker_client = docker.from_env()
 
 @click.group()
 def main():
-    """main"""
+    '''RoyalChaos - Tools made by JSimo'''
     pass
 
 @main.command()
 @click.option('--name', prompt='Container name?')
 def start(name):
-    '''Start monitoring container with given name'''
+    '''Start to monitor container with given name'''
     container_name = name
     container = docker_client.containers.get(container_name)
     monitoring.startMonitoring(container)
@@ -28,7 +27,7 @@ def start(name):
 @main.command()
 @click.option('--name', prompt='Container name?')
 def stop(name):
-    '''Stop monitoring container with given name'''
+    '''Stop to monitor container with given name'''
     container_name = name
     container = docker_client.containers.get(container_name)
     monitoring.stopMonitoring(container)
