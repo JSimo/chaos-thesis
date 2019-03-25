@@ -43,7 +43,7 @@ def startMonitoring(container):
     container_monit_ip = getIpFromContainerAttachedNetwork(container, monitoring_network_name)
 
     #1.2 Adds network monitoring container as a prometheus target.
-    prometheus.addTarget(container_monit_ip + ':12301', container_name)
+    prometheus.addTarget(container_monit_ip + ':12301', container_name) #TODO refactor port.
     print("Added network monitoring with ip:", container_monit_ip)
 
     #2. Launch syscall monitoring utilizing the same process namespace.
@@ -61,14 +61,13 @@ def stopMonitoring(container):
     '''Cleanup after'''
     container_name = container.name
 
-    #1. Stop network monitoring
-    # stop container
+    #1. Stop network monitoring.
     docker_client.containers.get(base_name_netm + '.' + container_name).kill() #stop()
-    # Disconnect container from network.
+    #1.1 Disconnect container from network.
     docker_client.networks.get(monitoring_network_name).disconnect(container_name)
 
-    #2. Stop syscall monitoring
+    #2. Stop syscall monitoring.
 
-    #3. Stop promtheus trying to get logs.
+    #3. Remove from prometheus discovery.
     prometheus.removeTarget(container_name)
 
