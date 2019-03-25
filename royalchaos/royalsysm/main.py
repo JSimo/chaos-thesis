@@ -28,6 +28,8 @@ def main():
             print('syscall', syscall)
             print('test: ', params)
 
+            # TODO: check if we should split params in some sane way.
+            # TODO: check if we should filter out some syscalls in strace.
             syscall_counter.labels(
                 syscall=syscall,
                 params=params).inc()
