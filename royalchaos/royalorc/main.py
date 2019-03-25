@@ -21,14 +21,14 @@ def main():
 @click.option('--name', prompt='Container name?')
 def start(name):
     '''Start to monitor container with given name'''
-    container = docker_client.containers.get(name)
+    container = getContainer(name)
     monitoring.startMonitoring(container)
 
 @main.command()
 @click.option('--name', prompt='Container name?')
 def stop(name):
     '''Stop to monitor container with given name'''
-    container = docker_client.containers.get(name)
+    container = getContainer(name)
     monitoring.stopMonitoring(container)
 
 @main.command()
@@ -41,6 +41,14 @@ def list():
 @main.command()
 def m():
     print(prometheus_api.testQuery())
+
+def getContainer(name):
+    '''Returns a container of given name and prints error message if does not exist.'''
+    try:
+        return docker_client.containers.get(name)
+    except docker.errors.NotFound:
+        print('Container with name "%s" not found' % name)
+        exit()
 
 if __name__ == '__main__':
     main()

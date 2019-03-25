@@ -34,6 +34,7 @@ def startMonitoring(container):
         network_mode='container:'+container_name,
         remove=True
         ))
+
     print("Launched network container with IP", container_ip)
 
     #1.1 Connect prometheus to container and get IP.
