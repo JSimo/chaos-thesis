@@ -1,3 +1,5 @@
+import requests
+import time
 
 # Package import
 import docker
@@ -53,9 +55,21 @@ def startMonitoring(container):
     #   detach=True,
     #   pid_mode="container:"+container_name)
 
-    #3. Verify monitoring, maybe send something on the open port? :hm:
+    #3. Wait for monitoring to be up.
+    monitor_url = 'http://'+container_monit_ip+':12301'
+    waitForMonitoring(monitor_url)
 
-    #4. Report ready for perturbations.
+    #4. Print container ports. Maybe do something to send request, and then check monitoring to verify working.
+    container_ports = container.attrs['NetworkSettings']['Ports']
+    #print(container_ports)
+    for inside_port in container_ports:
+        for outside in container_ports[inside_port]:
+            print('open port', outside['HostPort'])
+            # Ignore return value, just to send traffic to verify monitoring working.
+            print(requests.get(url='http://localhost:'+outside['HostPort']))
+
+
+    #5. Report ready for perturbations.
     pass
 
 def stopMonitoring(container):
@@ -72,3 +86,13 @@ def stopMonitoring(container):
     #3. Remove from prometheus discovery.
     prometheus.removeTarget(container_name)
 
+def waitForMonitoring(address):
+    '''Recursively waits for address to be up'''
+    print('.', end='')
+    try:
+        requests.get(address)
+        print('monitoring is up!')
+    except Exception:
+        # try again
+        time.sleep(0.05)
+        waitForMonitoring(address)
