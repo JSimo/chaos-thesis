@@ -9,7 +9,7 @@ docker_client = docker.from_env()
 
 # Temporary global variables
 monitoring_network_name = 'royalnetm_back-tier'
-base_name = 'jsimo2'
+base_name = 'se.kth.royalchaos'
 base_name_netm = base_name + '.netm'
 base_name_sysm = base_name + '.sysm'
 
@@ -30,7 +30,7 @@ def startMonitoring(container):
         'jsimo2/royalnetm',
         detach=True,
         environment=['ROYALNETM_IP='+container_ip],
-        name='jsimo2.netm.'+container_name,
+        name=base_name_netm+'.'+container_name,
         network_mode='container:'+container_name,
         remove=True
         ))
@@ -62,7 +62,7 @@ def stopMonitoring(container):
     container_name = container.name
 
     #1. Stop network monitoring.
-    docker_client.containers.get(base_name_netm + '.' + container_name).kill() #stop()
+    docker_client.containers.get(base_name_netm+'.'+container_name).kill() #stop()
     #1.1 Disconnect container from network.
     docker_client.networks.get(monitoring_network_name).disconnect(container_name)
 
