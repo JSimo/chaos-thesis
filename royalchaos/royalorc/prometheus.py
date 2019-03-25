@@ -27,4 +27,3 @@ def removeTarget(name):
     with open(path_to_prometheus_file, 'w') as f:
         f.write(json.dumps(newd))
 
-
