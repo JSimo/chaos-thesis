@@ -2,7 +2,7 @@ import subprocess
 
 from prometheus_client import Counter, start_http_server
 
-#Prometheus
+# Prometheus counter
 syscall_counter = Counter(
     'syscall_counter',
     '<description/>',
