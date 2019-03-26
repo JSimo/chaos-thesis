@@ -54,6 +54,7 @@ def startMonitoring(container):
         'jsimo2/royalsysm',
         cap_add=['SYS_PTRACE'],
         detach=True,
+        environment=['SYSM=6'], #TODO do not hardcode PID
         name=base_name_sysm+'.'+container_name,
         pid_mode="container:"+container_name,
         remove=True)
@@ -79,7 +80,6 @@ def startMonitoring(container):
             # Ignore return value, just to send traffic to verify monitoring working.
             print(requests.get(url='http://localhost:'+outside['HostPort']))
 
-
     #5. Report ready for perturbations.
     pass
 
@@ -102,6 +102,7 @@ def stopMonitoring(container):
 
 def waitForMonitoring(address):
     '''Recursively waits for address to be up'''
+    # TODO: Can get stuck here if the address does not exist, rewrite to handle this.
     print('.', end='')
     try:
         requests.get(address)

@@ -1,3 +1,4 @@
+import os
 import subprocess
 
 from prometheus_client import Counter, start_http_server
@@ -9,11 +10,18 @@ syscall_counter = Counter(
     ['syscall', 'params'])
 
 def main():
+    '''Syscall monitoring, only support one PID currently.'''
     #Start prometheus exporter.
     start_http_server(12301)
 
+    # Parse variables.
+    if 'SYSM_PID' not in os.environ:
+        print('Missing required PID parameter')
+        exit()
+    pid = os.environ['SYSM_PID']
+
     proc = subprocess.Popen(
-        ['strace', '-p', '6'],#TODO: not hardcode pid
+        ['strace', '-p', pid],
         stderr=subprocess.PIPE,
         universal_newlines=True)
     while True:
