@@ -16,6 +16,9 @@ base_name = 'se.kth.royalchaos'
 base_name_netm = base_name + '.netm'
 base_name_sysm = base_name + '.sysm'
 
+FAILED = '❌ FAILED'
+SUCCESS = '✔️ SUCCESS'
+
 def getIpFromContainerAttachedNetwork(container, network_name):
     return container.attrs['NetworkSettings']['Networks'][network_name]['IPAddress']
 
@@ -103,22 +106,44 @@ def stopMonitoring(container):
     container_name = container.name
 
     #1. Stop network monitoring.
-    docker_client.containers.get(base_name_netm+'.'+container_name).kill() #stop()
+    print('Stopping network monitoring ', end='', flush=True)
+    try:
+        docker_client.containers.get(base_name_netm+'.'+container_name).stop()
+        print(SUCCESS)
+    except Exception:
+        print(FAILED)
+
     #1.1 Disconnect container from prometheus network.
-    docker_client.networks.get(monitoring_network_name).disconnect(container_name)
+    print('Detaching network ', end='', flush=True)
+    try:
+        docker_client.networks.get(monitoring_network_name).disconnect(container_name)
+        print(SUCCESS)
+    except Exception:
+        print(FAILED)
 
     #2. Stop syscall monitoring.
-    docker_client.containers.get(base_name_sysm+'.'+container_name).kill() #stop()
+    print('Stopping syscall monitoring ', end='', flush=True)
+    try:
+        docker_client.containers.get(base_name_sysm+'.'+container_name).stop()
+        print(SUCCESS)
+    except Exception:
+        print(FAILED)
     #2.1 Disconnect container from prometheus network.
-    docker_client.networks.get(monitoring_network_name).disconnect(base_name_sysm+'.'+container_name)
+    print('Detaching network ', end='', flush=True)
+    try:
+        docker_client.networks.get(monitoring_network_name).disconnect(base_name_sysm+'.'+container_name)
+        print(SUCCESS)
+    except Exception:
+        print(FAILED)
 
     #3. Remove from prometheus discovery.
+    print('Cleaning out prometheus targets ')
     prometheus.removeTarget(container_name)
 
 def waitForMonitoring(address):
     '''Recursively waits for address to be up'''
     # TODO: Can get stuck here if the address does not exist, rewrite to handle this.
-    print('.', end='')
+    print('.', end='', flush=True)
     try:
         requests.get(address)
         print('monitoring is up!')
