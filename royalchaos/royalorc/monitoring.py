@@ -6,6 +6,7 @@ import docker
 
 # Local import
 import prometheus
+import container_api
 
 docker_client = docker.from_env()
 
@@ -51,17 +52,28 @@ def startMonitoring(container):
 
     #2. Launch syscall monitoring utilizing the same process namespace.
     # Figure out the PID of the process to monitor?
-    #container.top()
+    processes = container_api.getProcesses(container_name)['processes']
+    if len(processes) == 1:
+        # Easy case, just select that one for monitoring.
+        pid_to_monitor = processes[0][0]
+    elif len(processes) > 1:
+        # Harder case, ask to select one.
+        print('Multiple processes to choose from, please select 1.')
+        print(processes)
+        pid_to_monitor = input('Input PID to monitor: ')
+    else:
+        # no processes, WAT?
+        pass
 
     sysm_container = docker_client.containers.run(
         'jsimo2/royalsysm',
         cap_add=['SYS_PTRACE'],
         detach=True,
-        environment=['SYSM=6'], #TODO do not hardcode PID
+        environment=['SYSM='+pid_to_monitor],
         name=base_name_sysm+'.'+container_name,
         pid_mode="container:"+container_name,
         remove=True)
-    #2.1. Connect prometheus to contaiener.
+    #2.1. Connect prometheus to container.
     docker_client.networks.get(monitoring_network_name).connect(sysm_container)
 
     #2.2. Adds system call monitoring to prometheus targets.
