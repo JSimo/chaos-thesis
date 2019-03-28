@@ -1,5 +1,6 @@
 import os
 import subprocess
+import atexit
 
 from prometheus_client import Counter, start_http_server
 
@@ -8,6 +9,9 @@ syscall_counter = Counter(
     'syscall_counter',
     '<description/>',
     ['syscall', 'params'])
+
+def cleanup(proc):
+    proc.kill()
 
 def main():
     '''Syscall monitoring, only support one PID currently.'''
@@ -24,6 +28,9 @@ def main():
         ['strace', '-p', pid],
         stderr=subprocess.PIPE,
         universal_newlines=True)
+    # When we exit cleanup the subprocess, as to avoid having zombie processes running.
+    atexit.register(cleanup, proc)
+
     while True:
         line = proc.stderr.readline()
         if line != '':
