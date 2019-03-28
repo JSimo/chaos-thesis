@@ -40,6 +40,7 @@ def m():
 @main.command()
 @click.option('--name', prompt='Container name?')
 def procs_local(name):
+    '''prints a containers local processes using the pid-values in their namespace'''
     print(['%s %s' % (p[0], p[-1]) for p in container_api.getProcesses(name)['processes']])
 
 if __name__ == '__main__':
