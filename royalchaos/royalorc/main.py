@@ -3,14 +3,11 @@ import time
 
 # Package imports
 import click
-import docker
 
 # Local imports
 import monitoring
 import prometheus_api
-
-# Create docker client
-docker_client = docker.from_env()
+import container_api
 
 @click.group()
 def main():
@@ -21,34 +18,29 @@ def main():
 @click.option('--name', prompt='Container name?')
 def start(name):
     '''Start to monitor container with given name'''
-    container = getContainer(name)
+    container = container_api.getContainer(name)
     monitoring.startMonitoring(container)
 
 @main.command()
 @click.option('--name', prompt='Container name?')
 def stop(name):
     '''Stop to monitor container with given name'''
-    container = getContainer(name)
+    container = container_api.getContainer(name)
     monitoring.stopMonitoring(container)
 
 @main.command()
 def list():
     '''List all containers relevant to royal currently running'''
-    containers = docker_client.containers.list(
-        filters={'name': 'se.kth.royalchaos'})
-    print([c.name for c in containers])
+    print([c.name for c in container_api.list()])
 
 @main.command()
 def m():
     print(prometheus_api.testQuery())
 
-def getContainer(name):
-    '''Returns a container of given name and prints error message if does not exist.'''
-    try:
-        return docker_client.containers.get(name)
-    except docker.errors.NotFound:
-        print('Container with name "%s" not found' % name)
-        exit()
+@main.command()
+@click.option('--name', prompt='Container name?')
+def procs_local(name):
+    print(['%s %s' % (p[0], p[-1]) for p in container_api.getProcesses(name)['processes']])
 
 if __name__ == '__main__':
     main()

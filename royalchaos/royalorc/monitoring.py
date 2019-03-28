@@ -50,6 +50,9 @@ def startMonitoring(container):
     print("Added network monitoring with ip:", container_monit_ip)
 
     #2. Launch syscall monitoring utilizing the same process namespace.
+    # Figure out the PID of the process to monitor?
+    #container.top()
+
     sysm_container = docker_client.containers.run(
         'jsimo2/royalsysm',
         cap_add=['SYS_PTRACE'],
