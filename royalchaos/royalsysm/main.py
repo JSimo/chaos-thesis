@@ -12,18 +12,11 @@ syscall_counter = Counter(
     '<description/>',
     ['syscall', 'params'])
 
-def cleanup(proc):
-    print('hello from cleanup?')
-    proc.kill()
-    #os.killpg(os.getpgid(proc.pid), signal.SIGTERM)
-
-
 procs_to_kill = []
 def signal_handler(signal, frame):
     # save the state here or do whatever you want
-    print('to cleanpid: ', procs_to_kill)
     for proc in procs_to_kill:
-        proc.kill()#os.killpg(os.getpgid(proc.pid), signal.SIGTERM)
+        proc.kill()
         print('Bang, you\'re dead!')
     sys.exit(0)
 signal.signal(signal.SIGTERM, signal_handler)
@@ -45,8 +38,7 @@ def main():
         stderr=subprocess.PIPE,
         universal_newlines=True,
         preexec_fn=os.setsid)
-    # When we exit cleanup the subprocess, as to avoid having zombie processes running.
-    #atexit.register(cleanup, proc)
+    # Adds process to kill list.
     procs_to_kill.append(proc)
 
     while True:
