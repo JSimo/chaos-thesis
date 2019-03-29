@@ -18,7 +18,13 @@ def main():
 @click.option('--name', prompt='Container name?')
 def start(name):
     '''Start to monitor container with given name'''
+    # First do some simple verification of command.
     container = container_api.getContainer(name)
+
+    if container_api.hasMonitoring(name):
+        print('Container %s already has monitoring' % name)
+        return
+    # Now start monitoring.
     monitoring.startMonitoring(container)
 
 @main.command()
@@ -32,6 +38,11 @@ def stop(name):
 def list():
     '''List all containers relevant to royal currently running'''
     print([c.name for c in container_api.list()])
+
+@main.command()
+@click.option('--name', prompt='Container name?')
+def test(name):
+    print(container_api.hasMonitoring(name))
 
 @main.command()
 def m():

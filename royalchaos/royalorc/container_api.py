@@ -37,6 +37,14 @@ def getContainer(name):
         print('Container with name "%s" not found' % name)
         exit()
 
+def hasMonitoring(name):
+    '''Returns True if container has monitoring'''
+    containers = docker_client.containers.list(
+        filters={'name': 'se.kth.royalchaos.*.%s' % name})
+    return len(containers) != 0
+
+
+
 def list():
     '''List all containers relevant to royal currently running'''
     containers = docker_client.containers.list(
